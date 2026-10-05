@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {folderEntries} from '../web/folders.mjs';
+import {readFile} from 'node:fs/promises';
+const files=['Flux\\one.safetensors','Flux\\nested\\two.safetensors','Qwen/three.safetensors','root.safetensors'];
+test('root groups folders with recursive counts',()=>{const e=folderEntries(files);assert.deepEqual(e.folders.map(f=>[f.name,f.count]),[['Flux',2],['Qwen',1]]);assert.equal(e.files[0].name,'root.safetensors');});
+test('nested folders retain exact original selection paths',()=>{const e=folderEntries(files,'Flux');assert.equal(e.files[0].name,'Flux\\one.safetensors');assert.equal(e.folders[0].path,'Flux/nested');assert.equal(folderEntries(files,'Flux/nested').files[0].name,files[1]);});
+test('search spans all folders case insensitively',()=>assert.equal(folderEntries(files,'Qwen','TWO').files[0].name,files[1]));
+test('empty folder has no phantom files',()=>assert.deepEqual(folderEntries(files,'gone'),{folders:[],files:[]}));
+test('rows have a safe content floor without covering sockets',async()=>{const code=await readFile(new URL('../web/luci_lora.js',import.meta.url),'utf8');assert.ok(!code.includes("Object.defineProperty(widget,'y'"));assert.ok(code.includes('minHeight:contentHeight(),minWidth:380'));assert.ok(code.includes('Math.max(380,node.size[0])'));assert.ok(code.includes('size[0]=Math.max(380,size[0])'));const css=await readFile(new URL('../web/luci_lora.css',import.meta.url),'utf8');assert.ok(css.includes('overflow:visible!important'));assert.ok(!code.includes('list.append(add)'));});
