@@ -1,0 +1,71 @@
+.luci-lora,.luci-dialog{font-family:Arial,sans-serif;color:#e6eee9;box-sizing:border-box;font-size:12px}.luci-lora *,.luci-dialog *{box-sizing:border-box}.luci-lora{width:100%;min-width:0;padding:0 10px 8px;background:#1c2721;overflow:visible}.luci-lora button,.luci-dialog button,.luci-lora input,.luci-dialog input,.luci-lora select{font:inherit;color:#dce9df;background:#141f19;border:1px solid #3d5144;border-radius:6px;padding:7px;min-width:0}.luci-lora button,.luci-dialog button{cursor:pointer}.luci-lora button:hover,.luci-dialog button:hover{border-color:#80bd98;background:#2b4233}.luci-lora :focus-visible,.luci-dialog :focus-visible{outline:2px solid #70d6a1;outline-offset:2px}.luci-toolbar{height:52px;margin:0 82px 10px;display:flex;gap:7px;align-items:center;white-space:nowrap}.luci-toolbar span{flex:1;font-size:11px;color:#a9c0b2}.luci-toolbar button:last-child{font-size:10px}.luci-lora .luci-toggle{width:31px;height:18px;padding:0;flex-shrink:0;border:0;border-radius:12px;background:#4c5850;position:relative}.luci-toggle:after{content:'';width:12px;height:12px;background:#b6c4bb;border-radius:50%;position:absolute;left:3px;top:3px}.luci-lora .luci-toggle.on{background:#59ce94}.luci-toggle.on:after{left:16px;background:#f1fff6}.luci-stack{background:#17221b;border:1px solid #3d5144;border-radius:8px;padding:9px}.luci-row{background:#1c2721;border:1px solid #3d5144;border-radius:8px;padding:9px;margin-bottom:8px}.luci-row.selected{border-color:#79b78e}.luci-row.missing{border-color:#df776d;background:#33231f}.luci-controls{display:flex;align-items:flex-end;gap:6px}.luci-controls>.luci-toggle{align-self:center}.luci-lora .luci-name{flex:1;min-width:45px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;text-align:left;height:32px;font-size:11px}.luci-pair{display:flex;gap:5px}.luci-number{display:flex;flex-direction:column;gap:4px;font-size:9px;color:#adc1b3}.luci-number input{width:51px;height:32px;text-align:center}.luci-controls>button:not(.luci-toggle){height:32px}.luci-caption{display:flex;justify-content:space-between;gap:6px;margin:8px 0 0 37px;font-size:9px;color:#a1b7a8}.luci-caption span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.luci-caption span:last-child{white-space:nowrap}.missing .luci-caption{color:#f4aea2}.luci-lora .luci-add{width:100%;background:#70d6a1;color:#0b3020;border:0;font-weight:bold;padding:10px}.luci-footer{display:flex;justify-content:space-between;gap:8px;margin-top:10px}.luci-footer button,.luci-footer select{font-size:10px}.luci-summary{margin:8px 0 0;text-align:center;color:#b3c9bb;font-size:10px}.luci-modal{position:fixed;inset:0;z-index:100000;background:#0007;display:flex;align-items:center;justify-content:center;padding:20px}.luci-dialog{background:#1c2721;border:1px solid #4c6554;border-radius:12px;width:360px;max-width:95vw;max-height:85vh;overflow:auto;padding:20px;box-shadow:0 15px 50px #0008}.luci-dialog header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.luci-dialog h3{font-size:15px;overflow-wrap:anywhere;margin:0}.luci-dialog h4{font-size:12px}.luci-dialog section{border-top:1px solid #3d5144;margin-top:17px}.luci-muted{font-size:11px;color:#a2b2a7;line-height:1.6;overflow-wrap:anywhere}.luci-dialog>.luci-danger{color:#ffb0a6}.luci-dialog>button{display:block;width:100%;margin-top:8px;text-align:left}.luci-dialog>input{width:100%}.luci-dialog .luci-pair .luci-number{flex:1}.luci-dialog .luci-number input{width:100%}.luci-form{display:flex;gap:6px;margin-top:12px}.luci-form input{flex:1;width:100px}.luci-chips,.luci-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.luci-chips .chosen{background:#315a3f;border-color:#79ac88}.luci-picker{max-height:45vh;overflow:auto;margin-top:10px}.luci-picker button{display:block;width:100%;text-align:left;margin-top:5px;overflow-wrap:anywhere}
+.luci-lora{position:relative;background:transparent!important;display:flex;flex-direction:column;min-height:0;pointer-events:none!important;padding:0 8px 8px}
+.luci-lora>.luci-toolbar{position:absolute;top:-52px;left:72px;right:72px;height:44px;margin:0;padding:6px 9px;background:#202e25;border:1px solid #526d5b;border-radius:8px;pointer-events:auto}
+.luci-lora>.luci-stack{flex:1;min-height:0;overflow:auto;pointer-events:auto}
+.luci-lora>.luci-footer,.luci-lora>.luci-summary{flex-shrink:0;pointer-events:auto}
+.luci-lora .luci-toolbar span{font-size:10px}
+.luci-lora .luci-toolbar button:last-child{padding:5px}
+.luci-controls{flex-wrap:wrap}
+.luci-controls>.luci-name{flex-basis:60px}
+.luci-footer{flex-wrap:wrap}
+.luci-breadcrumbs{display:flex;gap:6px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.luci-picker .luci-folder{background:#26392c;border-color:#63816b;font-weight:bold}
+.luci-lora>.luci-add-area{flex-shrink:0;pointer-events:auto;padding:8px 9px;background:#17221b;border:1px solid #3d5144;border-top:0;border-radius:0 0 8px 8px}
+.luci-lora>.luci-stack{border-radius:8px 8px 0 0}
+.luci-lora .luci-add-area .luci-add{display:block;width:100%}
+.luci-lora>.luci-stack{flex:0 0 auto!important;overflow:visible!important;min-height:initial}
+.luci-lora>.luci-add-area{margin-bottom:0}
+.luci-lora>.luci-toolbar{left:70px!important;right:70px!important;display:grid!important;grid-template-columns:31px minmax(0,1fr) 26px 26px;gap:5px;padding:6px 7px!important;background:#303030!important;border-color:#555!important}
+.luci-lora .luci-icon{font-size:18px!important;width:26px!important;min-width:26px!important;max-width:26px;height:28px!important;min-height:28px;line-height:20px;padding:0!important;flex:none}
+.luci-lora .luci-toggle{width:31px!important;min-width:31px!important;max-width:31px!important;height:18px!important;min-height:18px!important;max-height:18px!important;padding:0!important;line-height:normal;flex:none}
+.luci-toolbar span{overflow:hidden;white-space:nowrap;font-size:10px!important}
+.luci-lora .luci-controls{display:grid!important;grid-template-columns:31px minmax(40px,1fr) 107px 24px 24px;gap:5px;align-items:end}
+.luci-controls>.luci-name{width:100%;min-width:0!important;height:32px;padding:6px;font-size:10px}
+.luci-controls>button:not(.luci-name):not(.luci-toggle){width:24px;min-width:24px;padding:0}
+.luci-lora .luci-footer{display:flex;flex-wrap:nowrap;min-height:30px}
+.luci-lora>.luci-stack{overflow:visible!important;flex:none!important;background:#202020!important;border-color:#484848!important}
+.luci-lora>.luci-add-area{background:#202020!important;border-color:#484848!important}
+.luci-lora .luci-row,.luci-dialog{background:#282828!important;border-color:#484848}
+.luci-lora .luci-row.missing{background:#33231f!important;border-color:#df776d}
+.luci-lora .luci-row.selected{border-color:#70d6a1}
+.luci-lora input,.luci-lora button:not(.luci-add):not(.luci-toggle),.luci-dialog input,.luci-dialog button{background:#181818;border-color:#484848}
+.luci-setting{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;font-size:12px}
+.luci-setting input:not([type=checkbox]){width:110px}.luci-setting select{max-width:170px;background:#181818;color:#ddd;border:1px solid #484848;padding:6px;border-radius:6px}.luci-setting input[type=checkbox]{accent-color:#70d6a1}
+.luci-dialog>.luci-number{flex-direction:row;justify-content:space-between;align-items:center;margin-top:16px;font-size:12px}.luci-dialog>.luci-number input{width:90px}
+.luci-file-browser{border:1px solid #70d6a1!important;padding:9px!important;background:#242424!important}
+.luci-file-browser header{margin:0 0 8px}.luci-file-browser header h3{font-size:12px}.luci-file-browser header button{padding:3px 7px;font-size:10px}
+.luci-file-browser>input{width:100%;border:1px solid #70d6a1!important;background:#171717!important;font-size:11px;height:32px}
+.luci-file-browser .luci-breadcrumbs{margin:5px 0;border-bottom:1px solid #333;padding:0 0 5px;font-size:10px}
+.luci-file-browser .luci-breadcrumbs button{border:0!important;background:transparent!important;padding:4px;font-size:10px}
+.luci-file-browser .luci-picker{margin-top:0;max-height:60vh}
+.luci-file-browser .luci-picker button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0!important;border-radius:3px!important;background:transparent!important;box-shadow:none!important;margin:0!important;padding:7px 5px!important;font:11px Consolas,monospace;font-weight:normal!important;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:28px}
+.luci-file-browser .luci-picker button:hover,.luci-file-browser .luci-picker button:focus-visible{background:#304b3b!important;color:#d9ffea!important}
+.luci-file-browser .luci-folder-label{font:11px Arial,sans-serif;overflow:hidden;text-overflow:ellipsis}.luci-file-browser .luci-folder-label:before{content:'▸';color:#70d6a1;margin-right:8px}
+.luci-file-browser .luci-folder-count{font-size:9px;color:#999;flex-shrink:0;padding-left:12px}
+.luci-controls .luci-number{flex-direction:column-reverse;gap:3px;align-items:stretch;font-size:8px;text-align:center}
+.luci-lora .luci-controls{align-items:start!important}
+.luci-controls>.luci-toggle{margin-top:7px;align-self:start}
+.luci-row{padding-top:8px;padding-bottom:8px}
+.luci-preview{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.luci-preview img{width:100%;max-height:240px;object-fit:contain;border:1px solid #484848;border-radius:6px}.luci-preview a,.luci-preview p{grid-column:1/-1;font-size:11px;color:#70d6a1}
+.luci-dialog button:disabled{opacity:.5;cursor:wait}
+.luci-lora{padding:0 8px 8px}
+.luci-lora>.luci-stack{padding:6px;border-radius:8px;margin-bottom:6px}
+.luci-lora .luci-row{padding:7px;margin:0 0 6px}
+.luci-lora .luci-row:last-child{margin-bottom:0}
+.luci-lora .luci-controls{grid-template-columns:31px minmax(40px,1fr) 134px 24px;align-items:center!important}
+.luci-controls>.luci-toggle{margin-top:0;align-self:center}
+.luci-lora .luci-strength{display:grid;grid-template-columns:minmax(0,1fr) 16px;width:64px;height:32px;border:1px solid #484848;border-radius:6px;background:#181818;overflow:hidden}
+.luci-lora .luci-strength input{width:100%;height:30px;border:0;border-radius:0;padding:2px;text-align:center;appearance:textfield;-moz-appearance:textfield}
+.luci-strength input::-webkit-inner-spin-button,.luci-strength input::-webkit-outer-spin-button{appearance:none;margin:0}
+.luci-stepper{display:grid;grid-template-rows:1fr 1fr;border-left:1px solid #484848}
+.luci-lora .luci-stepper button{padding:0!important;min-width:0!important;min-height:0!important;border:0;border-radius:0;font-size:10px;line-height:14px;color:#70d6a1}
+.luci-lora .luci-caption{display:grid;grid-template-columns:31px minmax(40px,1fr) 134px 24px;gap:5px;margin:5px 0 0;font-size:9px;align-items:center}
+.luci-caption .luci-trigger-caption{grid-column:2;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.luci-strength-labels{grid-column:3;display:grid;grid-template-columns:64px 64px;gap:5px;text-align:center;font-size:8px}
+.luci-lora>.luci-add-area{padding:0;background:transparent!important;border:0;border-radius:0}
+.luci-lora .luci-add-area .luci-add{height:34px;padding:6px}
+.luci-lora .luci-toolbar button:disabled{cursor:default}
+/* The outer renderer frame also participates in browser hit testing.
+   Its transparent area must not block the canvas beneath it. */
+.dom-widget.luci-lora-host,.dom-widget:has(> .luci-lora){pointer-events:none!important}
+.dom-widget.luci-lora-storage-host,.dom-widget:has(> .luci-lora-storage){display:none!important;pointer-events:none!important;height:0!important}
