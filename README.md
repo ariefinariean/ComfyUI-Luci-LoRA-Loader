@@ -1,5 +1,39 @@
 # 👻 Luci LoRA Loader
 
+v0.2.8 aligns strength and notes fields and uses individual sample ratings,
+not the model-level mature flag, when deciding which previews to display.
+Unknown and mature sample ratings still require the opt-in setting.
+
+## Panel layout update (v0.2.7)
+
+The actual details panel now uses the approved concept structure: header lookup,
+model information beside Preview, strength guidance beside personal notes,
+trigger controls and sample gallery below. Narrow windows stack these regions.
+The component harness is available via `node tests/details_preview.mjs`.
+
+## Preview update (v0.2.6)
+
+After explicit Civitai lookup, an empty **Preview** saves the first permitted
+sample image as a browser-local copy. Existing previews are not overwritten.
+You can replace it with your own PNG/JPEG/WebP or remove it. Images are limited
+to 5 MB. Preview filtering settings still apply. If Civitai blocks browser
+downloads or storage is unavailable, a warning is shown and manual upload
+remains available. Removing it allows a subsequent lookup to fill it again.
+
+## Details update (v0.2.5)
+
+Explicit Civitai lookup now shows filename, SHA-256, model name, version,
+type, base model, trained words and the model link. Up to 12 permitted samples
+have expandable generation settings and copyable positive/negative prompts.
+Missing metadata is shown as Not provided; sample settings are never applied.
+Personal notes and uploaded previews are browser-local and are not in workflows.
+
+The details panel now includes **Your preview image**: choose a PNG, JPEG or
+WebP up to 5 MB, replace it, or remove it. Images are saved per LoRA filename
+in this browser's IndexedDB, not uploaded to a service or embedded in workflows.
+They do not transfer to another browser and clearing site data removes them.
+This is independent of the optional Civitai previews.
+
 A standalone ComfyUI custom node in the 👻 Luci category. Apply a stack of LoRAs with separate MODEL and CLIP strengths, local trigger words, and visible missing-file warnings.
 
 v0.2.4 uses charcoal surfaces with mint accents, separate MODEL/CLIP strengths, folder navigation, optional Civitai lookup and previews, and compact non-scrolling rows. The toolbar provides refresh and settings icons. Settings cover default strength, arrow step, trigger separator, memory mode, filename extensions, browser-saved defaults and optional online metadata.

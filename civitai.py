@@ -39,8 +39,6 @@ def safe_image_url(value):
 
 
 def mature(image, model):
-    if model.get('nsfw') is True:
-        return True
     rating = image.get('nsfw')
     if rating is True:
         return True
@@ -63,9 +61,17 @@ def normalize_version(data):
     images = []
     for item in data.get('images', []) if isinstance(data.get('images'), list) else []:
         if isinstance(item, dict) and item.get('type', 'image') == 'image' and safe_image_url(item.get('url')):
-            images.append({'url': item['url'], 'mature': mature(item, model)})
+            meta = item.get('meta') if isinstance(item.get('meta'), dict) else {}
+            fields = {}
+            for key in ('prompt', 'negativePrompt', 'seed', 'steps', 'cfgScale', 'sampler', 'scheduler', 'Model', 'model'):
+                value = meta.get(key)
+                if isinstance(value, (str, int, float)) and not isinstance(value, bool):
+                    fields[key] = str(value)[:12000 if key in ('prompt', 'negativePrompt') else 256]
+            images.append({'url': item['url'], 'mature': mature(item, model), 'meta': fields,
+                           'width': item.get('width') if isinstance(item.get('width'), int) else None,
+                           'height': item.get('height') if isinstance(item.get('height'), int) else None})
         if len(images) == 12:
             break
     model_id, version_id = data.get('modelId'), data.get('id')
     url = f'https://civitai.com/models/{model_id}?modelVersionId={version_id}' if isinstance(model_id, int) and isinstance(version_id, int) else None
-    return {'name': str(data.get('name', '')), 'family': str(data.get('baseModel', 'Unknown')), 'words': list(dict.fromkeys(w.strip() for w in words if isinstance(w, str) and w.strip())), 'images': images, 'url': url}
+    return {'name': str(data.get('name', ''))[:256], 'modelName': str(model.get('name', ''))[:256], 'type': str(model.get('type', 'LoRA'))[:64], 'family': str(data.get('baseModel', 'Unknown'))[:512], 'words': list(dict.fromkeys(w.strip() for w in words if isinstance(w, str) and w.strip())), 'images': images, 'url': url}

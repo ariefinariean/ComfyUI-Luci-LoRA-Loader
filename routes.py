@@ -79,6 +79,8 @@ async def civitai_lookup(request):
                     if len(raw) > 4 * 1024 * 1024:
                         raise ValueError('Civitai metadata is too large')
                 result = normalize_version(json.loads(raw))
+                result['hash'] = digest
+                result['filename'] = name
         return web.json_response(result)
     except (OSError, ValueError, TypeError):
         return web.json_response({'error': 'Could not read file or parse Civitai metadata'}, status=400)
