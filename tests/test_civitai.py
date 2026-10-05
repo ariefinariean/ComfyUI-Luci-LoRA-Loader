@@ -29,7 +29,9 @@ class CivitaiTests(unittest.TestCase):
         self.assertTrue(module.mature({'nsfw': 'Mature'}, {}))
         self.assertFalse(module.mature({'nsfwLevel': 1}, {}))
         self.assertTrue(module.mature({'nsfwLevel': 2}, {}))
-        self.assertTrue(module.mature({'nsfw': False}, {'nsfw': True}))
+        self.assertFalse(module.mature({'nsfw': False}, {'nsfw': True}))
+        self.assertFalse(module.mature({'nsfwLevel': 1}, {'nsfw': True}))
+        self.assertTrue(module.mature({}, {'nsfw': True}))
 
     def test_normalization_dedups_and_rejects_bad_images(self):
         data = {'id': 12, 'modelId': 8, 'trainedWords': ['cat', 'cat', None, ' dog '], 'images': [{'url': 'https://image.civitai.com/a', 'nsfw': False}, {'url': 'https://evil.example/b', 'nsfw': False}]}
