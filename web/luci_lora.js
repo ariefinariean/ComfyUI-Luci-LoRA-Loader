@@ -2,6 +2,9 @@ import {app} from '../../scripts/app.js';
 import {api} from '../../scripts/api.js';
 import {readState,makeRow,moveRow} from './state.mjs';
 import {folderEntries} from './folders.mjs';
+import {localPreview} from './local_preview.mjs';
+import {modelDetails} from './model_details.mjs';
+import {detailsLayout} from './details_layout.mjs';
 
 const CLASS='LuciLoRALoader', PRESETS='luci.lora.stacks.v1', DEFAULTS='luci.lora.defaults.v1';
 const css=document.createElement('link');css.rel='stylesheet';css.href=new URL('./luci_lora.css',import.meta.url).href;document.head.append(css);
@@ -53,6 +56,8 @@ function install(node){
  }
  function apiKey(){try{return localStorage.getItem('luci.civitai.key.v1')||'';}catch{return '';}}
  function onlineDetails(panel,row,drawChips){
+  const layout=detailsLayout(panel,row);
+  const preview=localPreview(layout.preview,row.name);
   if(state.showLookup===false)return;
   const section=el('section');section.append(el('h4','','Civitai metadata'),el('p','luci-muted','Lookup sends the SHA-256 hash to Civitai, not the file. Previews load from Civitai only after you request a lookup.'));
   const status=el('p','luci-muted'),gallery=el('div','luci-preview');const lookup=button('Look up on Civitai',async()=>{
@@ -60,10 +65,11 @@ function install(node){
    try{
     const response=await api.fetchApi('/luci/lora/civitai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:row.name,key:apiKey()})});const data=await response.json();if(!response.ok)throw Error(data.error||'Lookup failed');if(removed||dialog?.firstChild!==panel)return;
     row.words=[...new Set([...row.words,...(data.words||[])])];save();drawChips();status.textContent=(data.family||'Unknown family')+' - '+(data.words||[]).length+' trigger word(s) found. Select chips to include them.';
-    if(data.url){const link=el('a','','Open Civitai model page');link.href=data.url;link.target='_blank';link.rel='noopener noreferrer';gallery.append(link);}
-    if(state.showPreviews!==false){const images=(data.images||[]).filter(i=>state.allowMature||!i.mature);for(const image of images.slice(0,4)){const picture=el('img');picture.src=image.url;picture.alt='Civitai LoRA preview';picture.loading='lazy';picture.referrerPolicy='no-referrer';picture.onerror=()=>picture.replaceWith(el('p','luci-muted','Preview unavailable'));gallery.append(picture);}if(!images.length)gallery.append(el('p','luci-muted','No permitted previews. Unknown or mature ratings are hidden by default.'));}
+    modelDetails(gallery,data,{showPreviews:state.showPreviews,allowMature:state.allowMature});
+    layout.update(gallery,data);layout.samples.prepend(status);lookup.textContent='Refresh Civitai info';
+    if(state.showPreviews!==false)await preview.saveDefault(data.images,state.allowMature===true);
    }catch(error){if(dialog?.firstChild===panel)status.textContent=error.message||'Lookup unavailable. Local metadata still works.';}finally{lookup.disabled=false;}
-  });lookup.disabled=!row.name;section.append(lookup,status,gallery);panel.append(section);
+  });lookup.disabled=!row.name;lookup.className='luci-detail-lookup';layout.actions.prepend(lookup);layout.samples.append(status,gallery);
  }
  function close(){dialog?.remove();dialog=null;}
  function fitHeight(){node.setSize([Math.max(380,node.size[0]),Math.max(contentHeight()+90,node.computeSize()[1])]);}

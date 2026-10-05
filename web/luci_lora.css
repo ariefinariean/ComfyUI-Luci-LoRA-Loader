@@ -69,3 +69,39 @@
    Its transparent area must not block the canvas beneath it. */
 .dom-widget.luci-lora-host,.dom-widget:has(> .luci-lora){pointer-events:none!important}
 .dom-widget.luci-lora-storage-host,.dom-widget:has(> .luci-lora-storage){display:none!important;pointer-events:none!important;height:0!important}
+.luci-local-preview img{display:block;max-width:100%;max-height:180px;object-fit:contain;border:1px solid #70d6a1;border-radius:8px;margin-bottom:10px}
+.luci-local-preview img[hidden]{display:none}
+.luci-local-preview input{max-width:100%;margin-bottom:8px}
+.luci-dialog:has(.luci-model-info){width:min(960px,calc(100vw - 32px))!important;max-width:960px!important}
+.luci-preview:has(.luci-model-info){display:block}
+.luci-model-info,.luci-sample-gallery dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:0;margin:16px 0;border:1px solid #484848;border-radius:8px;overflow:hidden}
+.luci-model-info dt,.luci-model-info dd,.luci-sample-gallery dt,.luci-sample-gallery dd{margin:0;padding:8px;border-bottom:1px solid #404040;overflow-wrap:anywhere;font-size:12px}
+.luci-model-info dt,.luci-sample-gallery dt{color:#a8b5ad}
+.luci-model-info button{margin-left:8px}
+.luci-sample-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
+.luci-sample-gallery article{min-width:0;background:#202020;border:1px solid #484848;border-radius:8px;overflow:hidden}
+.luci-sample-gallery img{width:100%!important;max-width:none!important;height:230px!important;object-fit:contain;background:#181818}
+.luci-sample-gallery details{padding:12px}.luci-sample-gallery summary{cursor:pointer;color:#70d6a1}
+.luci-sample-prompt{white-space:pre-wrap;overflow-wrap:anywhere;max-height:150px;overflow:auto;font-size:12px}
+.luci-dialog.luci-details-panel{width:1060px!important;max-width:calc(100vw - 40px)!important;max-height:90vh;background:#282828;padding:0;font-size:14px;border:1px solid #484848;border-radius:15px}
+.luci-details-panel header{padding:24px 28px;border-bottom:1px solid #444;margin:0;align-items:center}
+.luci-details-panel header h3{font-size:24px;margin:5px 0;line-height:1.3}
+.luci-eyebrow{font-size:10px;letter-spacing:2px;font-weight:bold;color:#70d6a1}
+.luci-detail-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.luci-detail-badges span{background:#344b3d;color:#bcf2d3;font-size:11px;padding:3px 8px;border-radius:4px}
+.luci-detail-actions{display:flex;gap:8px;flex-shrink:0}.luci-details-panel .luci-detail-lookup{background:#70d6a1;color:#123321;border-color:#70d6a1;font-weight:bold;padding:10px 14px}
+.luci-detail-body{padding:24px 28px}.luci-detail-summary{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px}
+.luci-detail-info .luci-model-info{margin:0;grid-template-columns:110px minmax(0,1fr)}.luci-details-panel .luci-model-info dt,.luci-details-panel .luci-model-info dd{padding:11px 14px;font-size:12px}
+.luci-detail-preview{background:#222;border:1px solid #454545;border-radius:9px;padding:15px}.luci-details-panel .luci-detail-preview section{border:0;margin:0}.luci-details-panel h4{font-size:16px;margin:0 0 12px}.luci-detail-preview img{height:115px;width:100%;object-fit:contain}.luci-detail-preview input{width:100%;font-size:11px}
+.luci-detail-preferences{display:grid;grid-template-columns:210px minmax(0,1fr);gap:22px;margin:24px 0}.luci-details-panel .luci-detail-preferences section{border:0;margin:0}.luci-detail-preferences section>p{font-size:11px}.luci-detail-preferences .luci-pair{gap:12px}
+.luci-detail-notes textarea{width:100%;height:65px;resize:vertical;background:#1c1c1c;color:#eee;border:1px solid #4b4b4b;border-radius:6px;padding:9px;font:13px Arial}
+.luci-details-panel .luci-number{font-size:11px}.luci-detail-body>section{padding-top:16px;margin:12px 0 20px}.luci-detail-body>section>p{margin:6px 0}.luci-detail-file-note{display:none}
+.luci-detail-samples{margin-top:24px}.luci-detail-samples .luci-sample-gallery{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}.luci-details-panel .luci-sample-gallery img{height:260px!important;object-fit:cover}.luci-details-panel .luci-sample-gallery dl{grid-template-columns:80px minmax(0,1fr)}
+.luci-detail-footer{border-top:1px solid #444;padding:16px 28px;color:#a8b5ad;font-size:11px}
+.luci-detail-preferences section{display:grid;grid-template-rows:28px 65px auto;align-content:start}.luci-detail-preferences section h4{margin:0}.luci-detail-preferences .luci-pair{align-items:start}.luci-detail-preferences .luci-number input{height:36px}.luci-detail-notes h4{height:28px;margin:0}.luci-detail-notes textarea{display:block;margin:20px 0 0;height:36px}.luci-detail-preferences section>p{margin:6px 0 0}
+.luci-detail-preferences{grid-template-rows:28px 20px 36px auto;column-gap:22px;row-gap:0}
+.luci-detail-preferences>section,.luci-detail-preferences>.luci-detail-notes{display:contents}
+.luci-detail-preferences>section>h4{grid-column:1;grid-row:1;margin:0}.luci-detail-preferences>.luci-detail-notes>h4{grid-column:2;grid-row:1;height:auto;margin:0}
+.luci-detail-preferences>section>.luci-pair{grid-column:1;grid-row:2 / 4;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.luci-detail-preferences .luci-number{display:grid;grid-template-rows:20px 36px;gap:0;line-height:20px}.luci-detail-preferences .luci-number input{margin:0;height:36px;line-height:normal}
+.luci-detail-preferences>.luci-detail-notes>textarea{grid-column:2;grid-row:3;margin:0!important;height:36px!important}.luci-detail-preferences>section>p{grid-column:1;grid-row:4;margin:8px 0 0}
+@media(max-width:750px){.luci-detail-summary,.luci-detail-preferences{grid-template-columns:1fr}.luci-detail-preferences>section,.luci-detail-preferences>.luci-detail-notes{display:block}.luci-detail-preferences{display:block}.luci-detail-notes{margin-top:16px}.luci-detail-preferences>.luci-detail-notes>textarea{margin-top:8px!important}.luci-detail-samples .luci-sample-gallery{grid-template-columns:1fr}.luci-details-panel header{flex-wrap:wrap}.luci-detail-body{padding:20px}.luci-details-panel header h3{font-size:20px}.luci-dialog.luci-details-panel{max-width:calc(100vw - 24px)!important}}

@@ -1,0 +1,14 @@
+export function detailsLayout(panel,row){
+ const make=(tag,cls,text)=>{const e=document.createElement(tag);e.className=cls||'';if(text!==undefined)e.textContent=text;return e;};
+ panel.classList.add('luci-details-panel');const header=panel.querySelector('header'),title=header.querySelector('h3');
+ const heading=make('div','luci-detail-heading');heading.append(make('div','luci-eyebrow','LORA DETAILS'),title);const badges=make('div','luci-detail-badges');badges.append(make('span','','LoRA'),make('span','','Local file'));heading.append(badges);header.prepend(heading);
+ const actions=make('div','luci-detail-actions');actions.append(header.querySelector('button'));header.append(actions);
+ const children=[...panel.children];const strength=children.find(e=>e.tagName==='SECTION'),triggers=children.filter(e=>e.tagName==='SECTION')[1];
+ const summary=make('div','luci-detail-summary'),info=make('div','luci-detail-info'),preview=make('aside','luci-detail-preview');summary.append(info,preview);
+ const table=make('dl','luci-model-info');for(const [label,value] of [['File',row.name||'Choose a LoRA'],['SHA-256','Available after lookup'],['Civitai','Not looked up yet'],['Name / version',row.name?.split(/[\\/]/).pop()||'Not provided'],['Base model','Reading local metadata…']])table.append(make('dt','',label),make('dd','',value));info.append(table);
+ const preferences=make('div','luci-detail-preferences');if(strength){const hint=strength.querySelector('p');if(hint)strength.append(hint);preferences.append(strength);}const notesLabel=make('label','luci-detail-notes');notesLabel.append(make('h4','','Personal notes'));const notes=make('textarea');notes.placeholder='Add your notes…';const key='luci.lora.notes.v1:'+row.name;try{notes.value=localStorage.getItem(key)||'';}catch{}notes.onchange=()=>{try{localStorage.setItem(key,notes.value);}catch{notes.setAttribute('aria-label','Notes could not be saved');}};notesLabel.append(notes);preferences.append(notesLabel);
+ const body=make('div','luci-detail-body');body.append(summary,preferences);if(triggers)body.append(triggers);
+ for(const child of children)if(child.tagName==='P'){child.classList.add('luci-detail-file-note');body.append(child);}
+ const samples=make('div','luci-detail-samples');body.append(samples);panel.append(body);const footer=make('footer','luci-detail-footer');footer.append(make('small','','Sample settings are never applied to your workflow.'));panel.append(footer);
+ return {preview,samples,actions,update(rendered,data){const table=rendered.querySelector('.luci-model-info');if(table)info.replaceChildren(table);const remoteNotes=rendered.querySelector('label');remoteNotes?.remove();samples.replaceChildren(...rendered.children);title.textContent=[data.modelName||row.name,data.name].filter(Boolean).join(' · ');badges.replaceChildren(make('span','',data.type||'LoRA'),make('span','',data.family||'Unknown'),make('span','','Civitai'));}};
+}
