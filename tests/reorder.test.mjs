@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {placeRow} from '../web/state.mjs';
+test('drag placement before and after retains rows and settings',()=>{const rows=[{id:'a',model:.7},{id:'b'},{id:'c'}];assert.deepEqual(placeRow(rows,'a','c').map(r=>r.id),['b','a','c']);const next=placeRow(rows,'c','a');assert.deepEqual(next.map(r=>r.id),['c','a','b']);assert.equal(next[1],rows[0]);assert.deepEqual(placeRow(rows,'a','c',true).map(r=>r.id),['b','c','a']);assert.equal(placeRow(rows,'a','a'),rows);assert.equal(placeRow(rows,'missing','a'),rows);});

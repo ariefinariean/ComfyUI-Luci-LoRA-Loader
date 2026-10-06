@@ -2,7 +2,8 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {readState,makeRow,moveRow} from '../web/state.mjs';
+import {readState,makeRow,moveRow,placeRow} from '../web/state.mjs';
+import {libraryEntry,updateLibrary} from '../web/library.mjs';
 
 class Element {
  constructor(tag){this.tag=tag;this.children=[];this.style={};this.className='';this.classes=new Set();this.classList={add:name=>this.classes.add(name)};}
@@ -18,8 +19,9 @@ async function mount(){
  let extension,root,widget,options;
  const node={widgets:[{name:'stack',value:'{"rows":[]}',element:new Element('textarea')}],size:[460,400],computeSize(){return [380,0];},setSize(size){this.size=size;},setDirtyCanvas(){},addDOMWidget(name,type,element,opts){root=element;root.host=new Element('div');options=opts;widget={};return widget;}};
  node.widgets[0].element.host=new Element('div');
- const source=(await readFile(new URL('../web/luci_lora.js',import.meta.url),'utf8')).replace(/^import .*;$/gm,'').replace("new URL('./luci_lora.css',import.meta.url).href","'test.css'");
+ const source=(await readFile(new URL('../web/luci_lora.js',import.meta.url),'utf8')).replace(/^import .*;$/gm,'').replaceAll('import.meta.url',"'https://example.test/web/luci_lora.js'");
  const context={document:{createElement:t=>new Element(t),head:new Element('head'),body:new Element('body')},app:{registerExtension:e=>extension=e},api:{fetchApi:async()=>({ok:true,json:async()=>({files:[]})})},readState,makeRow,moveRow,localStorage:{getItem:()=>null},crypto:globalThis.crypto,structuredClone,console,queueMicrotask};
+ context.URL=URL;context.libraryEntry=()=>({});context.updateLibrary=()=>true;context.placeRow=placeRow;context.requestAnimationFrame=()=>{};
  vm.runInNewContext(source,context);
  function Node(){}
  extension.beforeRegisterNodeDef(Node,{name:'LuciLoRALoader'});
@@ -34,6 +36,7 @@ test('empty node has no phantom list or permanent stacks footer',async()=>{
  assert.equal(find(ui.root,e=>e.className==='luci-stack'),undefined);
  assert.equal(find(ui.root,e=>e.className==='luci-footer'),undefined);
  assert.ok(find(ui.root,e=>e.className==='luci-add'));
+ assert.equal(find(ui.root,e=>e.className==='luci-stack-save').title,'Save This Lora Stack');
 });
 test('DOM hit area is bounded and backing editor cannot intercept canvas clicks',async()=>{
  const ui=await mount();
@@ -54,6 +57,7 @@ test('DOM hit area is bounded and backing editor cannot intercept canvas clicks'
  find(ui.root,e=>e.className==='luci-add').onclick();
  assert.equal(ui.widget.getMaxHeight(),136);
  assert.equal(ui.root.style.height,'136px');
+ const oversized=[380,900];ui.node.onResize(oversized);assert.equal(oversized[1],226);
 });
 test('row has separate working steppers and no ellipsis action button',async()=>{
  const ui=await mount();
