@@ -75,3 +75,19 @@ Backend unit tests cover strengths, missing files, disabled rows, optional CLIP,
 ## License
 
 MIT. Original implementation; existing loaders were inspected as behavioral references, not vendored into this package.
+# v0.2.12 — row shortcuts
+
+Save icon beside Add LoRA opens the existing stack manager. Favorites and successful Civitai metadata lookups are stored by filename in this browser; a mint info outline indicates saved metadata. Custom previews and other existing features remain unchanged. Browser storage is not included in workflows and clearing site data removes it.
+
+Upgrade by replacing the existing `ComfyUI-Luci-LoRA-Loader` folder, not installing a second copy. Restart ComfyUI and hard-refresh the browser. The `LuciLoRALoader` node ID, stack schema, and existing stack storage key are unchanged; saved workflows continue to load.
+
+# v0.2.13 — reorder and compact height
+
+Drag the grip at the lower-right of a LoRA row to place it before or after another row. Mint insertion lines show the destination. Row order is stored in the existing workflow stack and controls application order. Right-click Move up/down remains available.
+
+Node height is compacted on loading old workflows and resizing, removing oversized bottom space. Existing node identity, settings, favorites, triggers, and presets are retained.
+
+# v0.2.14 — frontend cache compatibility
+
+Versioned frontend module and stylesheet URLs prevent an updated entry script from importing an older cached module. In v0.2.13, the new `placeRow` import could fail against a cached older `state.mjs`, leaving the raw stack widget visible. No workflow data or storage keys are changed.
+
